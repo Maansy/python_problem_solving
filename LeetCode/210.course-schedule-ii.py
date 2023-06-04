@@ -3,23 +3,10 @@
 #
 # [210] Course Schedule II
 #
-from typing import List
+
 # @lc code=start
 class Solution(object):
-    def dfs(self, course, prereq, visited, stack):
-        if visited[course] == -1:
-            return False
-        if visited[course] == 1:
-            return True
-        visited[course] = -1
-        for pre in prereq[course]:
-            if not self.dfs(pre, prereq, visited, stack):
-                return False
-        visited[course] = 1
-        stack.append(course)
-        return True
-    
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder(self, numCourses, prerequisites):
         """
         :type numCourses: int
         :type prerequisites: List[List[int]]
@@ -30,11 +17,22 @@ class Solution(object):
             prereq[course].append(pre)
         visited = [0] * numCourses
         stack = []
+        def dfs(course):
+            if visited[course] == -1:
+                return False
+            if visited[course] == 1:
+                return True
+            visited[course] = -1
+            for pre in prereq[course]:
+                if not dfs(pre):
+                    return False
+            visited[course] = 1
+            stack.append(course)
+            return True
         for course in range(numCourses):
-            if not self.dfs(course, prereq, visited, stack):
+            if not dfs(course):
                 return []
         return stack[::-1]
+        
 # @lc code=end
 
-solution = Solution()
-print(solution.findOrder(2, [[1,0]]))
