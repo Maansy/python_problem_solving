@@ -16,7 +16,7 @@ class Solution(object):
             while lft_ptr < rgt_ptr and not self.alphaNum(s[lft_ptr]):
                 lft_ptr += 1
             
-            while rgt_ptr > lft_ptr and not self.alphaNum(s[rgt_ptr]):
+            while lft_ptr < rgt_ptr and not self.alphaNum(s[rgt_ptr]):
                 rgt_ptr -= 1
 
             if s[lft_ptr].lower() != s[rgt_ptr].lower():
