@@ -7,5 +7,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          echo "Hello, world!"
+      - name: Echo the current date
+        run: echo "The current date is $(date)"
+        
