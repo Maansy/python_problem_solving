@@ -1,0 +1,11 @@
+on: push
+
+name: Integration
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo "Hello, world!"
